@@ -16,7 +16,10 @@ export default {
  methods: {
      enter() {
          this.$emit('login', this.email);
-     }
- }
+     },
+
+     
+  }
+
 }
 </script>

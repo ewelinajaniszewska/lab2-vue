@@ -3,9 +3,13 @@
     
     <h1>Witaj w systemie do zapisow na zajecia!!</h1>
    
+
     <div v-if="authenticatedUsername">   
-    <h2>Twój e-mail to:  {{authenticatedUsername}}</h2> 
-      <button @click="logout()">Wyloguj</button>
+    <h2> Witaj {{authenticatedUsername}}
+      <button  @click="logout()">Wyloguj</button>
+      <meeting-page></meeting-page>
+    </h2>  
+
     </div> 
 
     <div v-else>
@@ -20,11 +24,12 @@
 
  import "milligram"
  import LoginForm from "./LoginForm";
+ import MeetingPage from "./meetings/MeetingPage"
 
  export default {
  name: "app",
 
- components: {LoginForm},
+ components: {LoginForm, MeetingPage},
  data() {
      return {
      authenticatedUsername: '',   
@@ -56,10 +61,15 @@
 
 h1 {
   font-weight: normal;
+  text-align: left;
 }
 
 h2 {
   font-weight: normal; 
+  text-align: left;
+}
+
+button {
   text-align: left;
 }
 
