@@ -1,39 +1,43 @@
 <template>
   <div id="app">
+    
     <h1>Witaj w systemie do zapisow na zajecia!!</h1>
    
-  <div v-if="logged">    
-   <h2>Twój e-mail to:  {{ email }}</h2> 
+    <div v-if="authenticatedUsername">   
+    <h2>Twój e-mail to:  {{authenticatedUsername}}</h2> 
       <button @click="logout()">Wyloguj</button>
-      </div>
+    </div> 
 
- <div v-else>
-  <h2> Zaloguj sie emailem  <input type="email" v-model="email"> </h2>
-      <button @click="login()">Wchodzę</button>
-   </div>
-</div>
+    <div v-else>
+     <login-form @login="login($event)"></login-form>
+    </div>
+
+  </div>
+
  </template>
  
  <script>
 
  import "milligram"
+ import LoginForm from "./LoginForm";
+
  export default {
  name: "app",
+
+ components: {LoginForm},
  data() {
      return {
-    email: '',
-    logged: false
+     authenticatedUsername: '',   
   };
  },
- methods: {
-  login() {
-    this.logged = true;
-  },
+ methods: { 
+    login(username) {
+    this.authenticatedUsername = username;
+  },  
    logout() {
-     this.logged = false;
+     this.authenticatedUsername = '';
      }
    }
-
 };
  </script> 
 
